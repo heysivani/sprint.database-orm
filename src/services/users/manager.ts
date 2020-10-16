@@ -31,13 +31,13 @@ class UserManager implements IManager {
     this.userRepository = getRepository(User);
   }
 
-  /**
+  /** "/users"
    * Get user by primary key
    *
    * FIXME
    */
   public async getUser(userId: string): Promise<User> {
-    return Promise.resolve(new User());
+    return this.userRepository.findOne( {id: userId } );
   }
 
   /**
