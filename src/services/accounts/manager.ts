@@ -26,7 +26,6 @@ class AccountManager implements IManager {
 
   public async getAccount(accountId: string): Promise<Account> {
     return await this.accountRepository.findOne({ id: accountId });
-    // return Promise.resolve(accountWithBalance);
   }
 
   /**
@@ -34,7 +33,7 @@ class AccountManager implements IManager {
    * create a new account DONE
    */
   public async createAccount(details: Partial<Account>): Promise<Account> {
-    const newAccount = new Account()
+    const newAccount = new Account();
     newAccount.name = details.name;
     newAccount.owner = details.owner;
     return this.accountRepository.save(newAccount);
