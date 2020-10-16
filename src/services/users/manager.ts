@@ -79,7 +79,8 @@ class UserManager implements IManager {
    * FIXME
    */
   public async removeUser(userId: string): Promise<DeleteResult | void> {
-    return Promise.resolve();
+    let userToRemove = await this.userRepository.findOne( {id: userId } );
+    await this.userRepository.remove(userToRemove);
   }
 
   /**
