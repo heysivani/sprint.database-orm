@@ -70,9 +70,6 @@ class UserManager implements IManager {
   /**
    * Delete user
    *
-   * Basic Requirements:
-   * - Delete User from database
-   *
    * Advanced Requirements:
    * - Soft delete user from database
    *

@@ -5,10 +5,15 @@ import User from "./UserModel";
 /**
  * FIXME
  */
+@Entity({name: "accounts" /* Relation name in database */})
 class Account {
+  @PrimaryGeneratedColumn("uuid")
   public id: string;
-  public transactions: Transaction[];
+
+  @Column({ nullable: false })
   public name: string;
+  
+  @ManyToOne(() => User, users => users.id, { onDelete: "CASCADE",  nullable: false })
   public owner: User;
 }
 
