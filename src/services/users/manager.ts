@@ -31,10 +31,8 @@ class UserManager implements IManager {
     this.userRepository = getRepository(User);
   }
 
-  /** "/users"
-   * Get user by primary key
-   *
-   * FIXME
+  /**
+   * Get a user
    */
   public async getUser(userId: string): Promise<User> {
     return this.userRepository.findOne( {id: userId } );
@@ -58,11 +56,15 @@ class UserManager implements IManager {
 
   /**
    * Update user details
-   *
-   * FIXME
    */
   public async updateUser(userId: string, updates: Partial<User>): Promise<User> {
-    return Promise.resolve(new User());
+    let userToUpdate = await this.userRepository.findOne( {id: userId } );
+    for (let key in userToUpdate) {
+      if(updates[key]){
+        userToUpdate[key] = updates[key];
+      }
+    }
+    return await this.userRepository.save(userToUpdate);
   }
 
   /**
